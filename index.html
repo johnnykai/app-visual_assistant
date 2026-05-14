@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>視覺助理 (極簡大按鈕版)</title>
+    <title>視覺助理 (Gemini 2.5 版)</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -14,11 +14,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* 居中 */
+            justify-content: center;
             padding: 10px;
         }
         
-        /* 照片視窗縮小為原來的一半左右 */
         .video-container {
             width: 180px; 
             background: #16213e;
@@ -34,7 +33,6 @@
             background: #000;
         }
         
-        /* 按鈕區域放大 */
         .controls {
             display: flex;
             flex-direction: column;
@@ -46,11 +44,11 @@
         
         button {
             width: 100%;
-            padding: 30px 10px; /* 極大的點擊區域 */
+            padding: 30px 10px;
             border: none;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 24px; /* 極大字體 */
+            font-size: 24px;
             font-weight: bold;
             transition: all 0.2s;
             box-shadow: 0 6px 10px rgba(0,0,0,0.4);
@@ -113,7 +111,8 @@
         const apiKeyInput = document.getElementById('apiKey');
 
         let capturedImage = null;
-        const modelName = 'gemini-1.5-flash'; 
+        // 已更新為 Gemini 2.5 Flash
+        const modelName = 'gemini-2.5-flash';
 
         function speak(text) {
             window.speechSynthesis.cancel();
@@ -168,6 +167,7 @@
             };
 
             try {
+                // 使用更新後的模型進行 API 調用
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
